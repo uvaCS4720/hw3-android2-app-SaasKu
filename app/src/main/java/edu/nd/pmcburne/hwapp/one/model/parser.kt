@@ -2,7 +2,7 @@ package edu.nd.pmcburne.hwapp.one.model
 
 import org.json.JSONObject
 
-fun parse(json: String, gender: String): List<Game>{
+fun parseData(json: String, gender: String): List<Game>{
     val root = JSONObject(json)
     val gArray = root.getJSONArray("games")
     val games = mutableListOf<Game>()
