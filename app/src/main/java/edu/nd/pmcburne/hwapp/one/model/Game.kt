@@ -17,4 +17,5 @@ data class Game(
     val startDate: String,
     val currentPeriod: String,
     val contestClock: String,
+    val gender: String,
 )
