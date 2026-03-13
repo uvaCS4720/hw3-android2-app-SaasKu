@@ -10,9 +10,12 @@ import java.time.LocalDateTime
 //TODO: Cite Room
 // https://developer.android.com/codelabs/basic-android-kotlin-compose-persisting-data-room?authuser=2#0
 
-@Entity(tableName = "game_table")
+@Entity(
+    tableName = "game_table",
+    primaryKeys = ["id", "gender"]
+)
 data class Game(
-    @PrimaryKey val id: String,
+    val id: String,
     val home: String,
     val away: String,
     val homeScore: Int?,

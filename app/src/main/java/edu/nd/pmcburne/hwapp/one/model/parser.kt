@@ -29,6 +29,7 @@ fun parseData(json: String, gender: String): List<Game>{
             currentPeriod=gObj.getString("currentPeriod"),
             contestClock=gObj.getString("contestClock"),
             gender=gender,
+            startTime = gObj.getString("startTime")
         )
         games.add(game)
     }
