@@ -20,7 +20,23 @@ data class GameInfo(
     val contestClock: String,
     val home: TeamInfo,
     val away: TeamInfo,
-)
+){
+    fun convertInfoToGame(gender: String) = Game(
+        id = gameID,
+        home = home.names.short,
+        away = away.names.short,
+        homeScore = home.score?.toIntOrNull(),
+        awayScore = away.score?.toIntOrNull(),
+        homeWon = home.winner,
+        awayWon = away.winner,
+        gameState = gameState,
+        startTime = startTime,
+        startDate = startDate,
+        currentPeriod = currentPeriod,
+        contestClock = contestClock,
+        gender = gender
+    )
+}
 
 data class TeamInfo(
     val score: String?,
@@ -29,7 +45,7 @@ data class TeamInfo(
 )
 
 data class TeamNames(
-    val shortName: String,
+    val short: String,
 )
 
 
