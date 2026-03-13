@@ -5,12 +5,13 @@ import android.net.*
 import android.content.Context
 import androidx.annotation.RequiresPermission
 import retrofit2.Retrofit
+import android.annotation.SuppressLint
 
 // TODO: DONT FORGET TO CITE this link properly!!!!!!!!!!!!!
 //https://developer.android.com/develop/connectivity/network-ops/reading-network-state
 
 class GameRepo(private val context: Context, private val gameDao: GameDao) {
-    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
+    @SuppressLint("MissingPermission")
     suspend fun getGames(
         gender: String,
         year: String,
