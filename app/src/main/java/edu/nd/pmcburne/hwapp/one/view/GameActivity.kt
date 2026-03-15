@@ -162,7 +162,7 @@ fun GameScreen(viewModel: GameViewModel = viewModel()) {
                     FilterChip(
                         selected = gender == "men",
                         onClick = { viewModel.setGender("men")},
-                        label = { Text("Men's") },
+                        label = { Text("Men") },
                         modifier = Modifier.padding(end = 8.dp),
                         colors = FilterChipDefaults.filterChipColors(
                             selectedContainerColor = MaterialTheme.colorScheme.primary,
@@ -172,7 +172,7 @@ fun GameScreen(viewModel: GameViewModel = viewModel()) {
                     FilterChip(
                         selected = gender == "women",
                         onClick = { viewModel.setGender("women")},
-                        label = { Text("Women's") },
+                        label = { Text("Women") },
                         colors = FilterChipDefaults.filterChipColors(
                             selectedContainerColor = MaterialTheme.colorScheme.primary,
                             selectedLabelColor = MaterialTheme.colorScheme.onPrimary
