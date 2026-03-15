@@ -32,12 +32,19 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
     private val dateSelected: MutableStateFlow<LocalDate> = MutableStateFlow(LocalDate.now())
     val ds: StateFlow<LocalDate> = dateSelected.asStateFlow()
 
+    private val _initialized = MutableStateFlow(false)
+    val initialized: StateFlow<Boolean> = _initialized.asStateFlow()
+
+    private val isOnline = MutableStateFlow(false)
+    val isOn: StateFlow<Boolean> = isOnline.asStateFlow()
+
     init{
         loadGames()
     }
 
 
     fun loadGames(){
+        _initialized.value = true
         viewModelScope.launch{
             loading.value = true
             gameList.value = repo.getGames(
@@ -47,6 +54,25 @@ class GameViewModel(application: Application): AndroidViewModel(application) {
                 day = dateSelected.value.dayOfMonth.toString().padStart(2, '0')
             )
             loading.value = false
+        }
+    }
+
+    fun setGender(newGender: String){
+        gender.value = newGender
+        loadGames()
+    }
+
+    fun setDate(date: LocalDate){
+        dateSelected.value = date
+        loadGames()
+    }
+
+
+    fun setOnline(online: Boolean){
+        val wasOffline = !isOnline.value
+        isOnline.value = online
+        if (wasOffline && online) {
+            loadGames()
         }
     }
 
