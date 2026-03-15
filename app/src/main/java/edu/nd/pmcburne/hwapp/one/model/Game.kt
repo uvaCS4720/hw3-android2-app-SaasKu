@@ -2,13 +2,6 @@ package edu.nd.pmcburne.hwapp.one.model
 
 import androidx.room.*
 import java.time.LocalDateTime
-//TODO: PLEASE DON"T FORGET TO IMPLEMENT API RATE LIMITS
-// 5 requests per second
-// https://ncaa-api.henrygd.me/openapi
-// THE APPLICATION WILL LOOK WEIRD IF YOU GET RATE LIMITED
-
-//TODO: Cite Room
-// https://developer.android.com/codelabs/basic-android-kotlin-compose-persisting-data-room?authuser=2#0
 
 @Entity(
     tableName = "game_table",
@@ -28,4 +21,39 @@ data class Game(
     val currentPeriod: String,
     val contestClock: String,
     val gender: String,
-)
+){
+    fun calculateTimeRemaining(): String {
+        if (currentPeriod == "HALFTIME") return "20:00"
+
+        val parts = contestClock.split(":")
+        if (parts.size != 2) return contestClock
+
+        val minutes = parts[0].toIntOrNull() ?: 0
+        val seconds = parts[1].toIntOrNull() ?: 0
+        val clockSeconds = minutes * 60 + seconds
+
+        val totalSeconds: Int
+        if (gender == "men") {
+            totalSeconds = when (currentPeriod) {
+                "1st" -> clockSeconds + 20 * 60
+                "2nd" -> clockSeconds
+                else -> clockSeconds
+            }
+        } else {
+            val periodsLeft = when (currentPeriod) {
+                "1st" -> 3
+                "2nd" -> 2
+                "3rd" -> 1
+                "4th" -> 0
+                else -> 0
+            }
+            totalSeconds = clockSeconds + periodsLeft * 10 * 60
+        }
+
+        val remMin = totalSeconds / 60
+        val remSec = totalSeconds % 60
+        return "%d:%02d".format(remMin, remSec)
+    }
+}
+
+

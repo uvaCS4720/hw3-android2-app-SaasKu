@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp") version "2.0.21-1.0.27"
 }
 
 android {
@@ -46,14 +47,18 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    val lifecycle_version = "2.10.0"
     val room_version = "2.8.4"
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    ksp("androidx.room:room-compiler:$room_version")
 
+    implementation(libs.androidx.material3)
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
-    implementation(libs.androidx.room.rxjava2)
-    implementation(libs.androidx.room.paging)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

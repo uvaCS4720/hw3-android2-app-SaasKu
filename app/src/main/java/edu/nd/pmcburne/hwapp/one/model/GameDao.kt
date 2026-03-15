@@ -6,8 +6,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.*
 
-//https://developer.android.com/training/data-storage/room/accessing-data
-
+/***************************************************************************************
+ * REFERENCES
+ * Title: Accessing data using Room DAOs
+ * Author: Android Developers
+ * URL: https://developer.android.com/training/data-storage/room/accessing-data?utm_source=android-studio-app&utm_medium=app
+ * Software License: Apache 2 License
+ * Usage: I used this to find out how to set up Dao and how to use it to do SQL queries
+ ***************************************************************************************/
 @Dao
 interface GameDao {
 

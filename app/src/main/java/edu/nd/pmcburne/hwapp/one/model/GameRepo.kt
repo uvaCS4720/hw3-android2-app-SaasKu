@@ -5,11 +5,20 @@ import android.net.*
 import android.content.Context
 import androidx.annotation.RequiresPermission
 import retrofit2.Retrofit
+import android.annotation.SuppressLint
 
 // TODO: DONT FORGET TO CITE this link properly!!!!!!!!!!!!!
 //https://developer.android.com/develop/connectivity/network-ops/reading-network-state
-
+/***************************************************************************************
+ * REFERENCES
+ * Title:  Read network state
+ * Author: Android Developers
+ * URL:https://developer.android.com/develop/connectivity/network-ops/reading-network-state
+ * Software License: Apache 2 License
+ * Usage: I used this to learn and get reference for the networks stuff for the app
+ ***************************************************************************************/
 class GameRepo(private val context: Context, private val gameDao: GameDao) {
+//    @SuppressLint("MissingPermission")
     @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     suspend fun getGames(
         gender: String,
